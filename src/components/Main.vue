@@ -23,9 +23,10 @@
 
 
 <template>
-  <main class="container d-flex  justify-content-center  ">
 
-    <div class="row row-cols-4">
+  <main class="container">
+
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 d-flex justify-content-md-between justify-content-center">
 
       <card v-for="card in store.cardList.results"
 
@@ -36,8 +37,6 @@
       :species="card.species"
     
       />
-
-
 
     </div>
 

@@ -27,7 +27,7 @@
 
 <template>
 
-  <main>
+  
 
     <div class=" text-center my-5" style="width: 18rem;">
 
@@ -47,7 +47,7 @@
     </div>
 
 
-  </main>
+  
   
   
 </template>
@@ -55,5 +55,29 @@
 
 
 <style lang="scss" scoped>
+
+
+main {
+
+  
+  div{
+
+   
+    img{
+
+      
+      &:hover{
+
+        scale: 1.1;
+        transition-duration: 0.7;
+
+      }
+
+    }
+
+
+  }
+
+}
 
 </style>

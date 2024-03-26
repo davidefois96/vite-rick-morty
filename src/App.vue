@@ -73,6 +73,7 @@
 
 @use './assets/scss/main.scss';
 
-
-
+*{
+  background-color: bisque;
+  }
 </style>
