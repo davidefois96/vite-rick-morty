@@ -1,6 +1,8 @@
 <script>
   import Main from './components/Main.vue'
   import Header from './components/Header.vue'
+  import SearchBar from './components/SearchBar.vue'
+
   import {store} from './assets/data/store.js'
   import axios from 'axios';
   
@@ -10,7 +12,8 @@
 
     components:{
       Main,
-      Header
+      Header,
+      SearchBar
 
 
     },
@@ -25,30 +28,51 @@
     methods:{
 
       getApi(){
+        
 
-        axios.get(this.store.apiUrl)
+        
+        axios.get(this.store.apiUrl,
+        
+        {
+          
+          params:this.store.apiParams
+
+
+        }
+        )
         .then(result => {
           this.store.cardList=result.data
           console.log(result.data);
-          
+       
         })
         .catch(error=> {
 
           console.log(error);
         })
 
-      }
+      this.store.cardList.results.forEach(card => {
+
+          
+      if (!card.name.includes(this.store.apiParams.name)||!card.status.includes(this.store.apiParams.status)||!card.species.includes(this.store.apiParams.species)) {
+
+        
+        this.store.cardList=[]
+        
+       
+      } 
 
       
 
+
+        });
+
+      },
+      
 
     },
     mounted(){
       this.getApi()
       
-      
-
-
     }
 
 
@@ -59,7 +83,13 @@
 <template>
   <div>
     <Header />
-     <Main />
+    <SearchBar 
+    @search="getApi"
+    
+    />
+
+     
+    <Main />
 
   </div>
   
