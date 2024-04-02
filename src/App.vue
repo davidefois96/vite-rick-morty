@@ -2,6 +2,7 @@
   import Main from './components/Main.vue'
   import Header from './components/Header.vue'
   import SearchBar from './components/SearchBar.vue'
+  import Paginator from './components/Paginator.vue'
 
   import {store} from './assets/data/store.js'
   import axios from 'axios';
@@ -13,7 +14,8 @@
     components:{
       Main,
       Header,
-      SearchBar
+      SearchBar,
+      Paginator
 
 
     },
@@ -28,7 +30,6 @@
     methods:{
 
       getApi(){
-        
 
         
         axios.get(this.store.apiUrl,
@@ -41,8 +42,10 @@
         }
         )
         .then(result => {
-          this.store.cardList=result.data
-          console.log(result.data);
+          this.store.cardList=result.data,
+          console.log(this.store.cardList),
+          this.store.totPages=this.store.cardList.info.pages,
+          console.log(this.store.totPages);
        
         })
         .catch(error=> {
@@ -50,18 +53,19 @@
           console.log(error);
         })
 
-      this.store.cardList.results.forEach(card => {
+        this.store.cardList.results.forEach(card => {
 
+            
+          if (!card.name.includes(this.store.apiParams.name)||!card.status.includes(this.store.apiParams.status)||!card.species.includes(this.store.apiParams.species)) {
+
+            
+            
+            this.store.cardList=[];
+            
           
-      if (!card.name.includes(this.store.apiParams.name)||!card.status.includes(this.store.apiParams.status)||!card.species.includes(this.store.apiParams.species)) {
+          } 
 
         
-        this.store.cardList=[]
-        
-       
-      } 
-
-      
 
 
         });
@@ -84,6 +88,10 @@
   <div>
     <Header />
     <SearchBar 
+    @search="getApi"
+    
+    />
+    <Paginator 
     @search="getApi"
     
     />

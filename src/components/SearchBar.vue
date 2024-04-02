@@ -33,7 +33,7 @@ import {store} from '../assets/data/store.js'
     <div>
       <h4>Name</h4>
       
-      <input type="text" v-model.trim="this.p1" @click="this.store.apiParams.name=''" @keyup.enter="this.store.apiParams.name=this.p1,$emit('search')">
+      <input type="text" v-model.trim="this.p1" @click="this.store.apiParams.name=''" @keyup.enter="this.store.apiParams.name=this.p1,this.store.apiParams.page=1,$emit('search')">
 
       
     
@@ -41,7 +41,7 @@ import {store} from '../assets/data/store.js'
 
     <div>
       <h4>Status</h4>
-      <input type="text" v-model.trim="this.p2" @click="this.store.apiParams.status=''" @keyup.enter="this.store.apiParams.status=this.p2,$emit('search')">
+      <input type="text" v-model.trim="this.p2" @click="this.store.apiParams.status=''" @keyup.enter="this.store.apiParams.status=this.p2,this.store.apiParams.page=1,$emit('search')">
 
       
       
@@ -51,7 +51,7 @@ import {store} from '../assets/data/store.js'
       <h4>Species</h4>
 
 
-      <input type="text" v-model.trim="this.p3" @click="this.store.apiParams.species=''" @keyup.enter="this.store.apiParams.species=this.p3 ,$emit('search')">
+      <input type="text" v-model.trim="this.p3" @click="this.store.apiParams.species=''" @keyup.enter="this.store.apiParams.species=this.p3,this.store.apiParams.page=1 ,$emit('search')">
 
       
       
